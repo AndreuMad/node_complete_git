@@ -4,11 +4,14 @@ const hbs = require('hbs');
 
 const middleware = require('./middlewares/middleware').middleware;
 
+const port = process.env.PORT || 3000;
+
 const app = express();
 
 hbs.registerPartials(`${__dirname}/views/partials`);
 hbs.registerHelper('getCurrentDate', () => new Date());
 hbs.registerHelper('generateText', text => `Generated text: ${text}`);
+
 app.set('view engine', 'hbs');
 app.use(express.static(`${__dirname}/public`));
 
@@ -39,4 +42,6 @@ app.get('/middleware', middleware, (req, res) => {
   });
 });
 
-app.listen(3000);
+app.listen(port, () => {
+  console.log(`Server is running on ${port} port`)
+});

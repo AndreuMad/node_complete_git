@@ -5,7 +5,8 @@
   "author": "Andrii Labyk <andrii.labyk@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "server": "nodemon server.js -e js,hbs"
+    "server": "nodemon server.js -e js,hbs",
+    "start": "node server.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
