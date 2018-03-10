@@ -2,11 +2,11 @@ const express = require('express');
 const fs = require('fs');
 const hbs = require('hbs');
 
+const config = require('./config');
 const middleware = require('./middlewares/middleware').middleware;
 
-const port = process.env.PORT || 3000;
-
 const app = express();
+const port = config.port;
 
 hbs.registerPartials(`${__dirname}/views/partials`);
 hbs.registerHelper('getCurrentDate', () => new Date());
@@ -23,8 +23,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
-  res.send({
+app.get('/json', (req, res) => {
+  res
+    .status(200)
+    .send({
     name: 'Andrii',
     age: 21
   });
@@ -45,3 +47,5 @@ app.get('/middleware', middleware, (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on ${port} port`)
 });
+
+module.exports.app = app;
