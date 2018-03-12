@@ -18,10 +18,10 @@ beforeEach(function beforeEachHook() {
 
 after(function afterHook() {
   // Tip: clear database after tests etc.
-  process.exit();
-  server.close();
+  // process.exit();
 });
 
 afterEach(function afterEachHook() {
+  server.close();
   this.sandbox.restore();
 });
